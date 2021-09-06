@@ -1,19 +1,32 @@
-import pyautogui, asyncio, time
+import pyautogui, asyncio, time, random, logging
 
-async def do_daily(): 
-    while True: 
-        print(f">>daily {time.strftime('%X')}")
-        await asyncio.sleep(5)
-    # pyautogui.write(str('>>roulette '+ str(betAmount) + ' color:red'))
-    # pyautogui.press('enter')
 
-async def gib_cookie(): 
+async def do_daily(): #22 hour cooldown 3600 seconds in 1 hour 
     while True: 
-        print(f">>gibcookie @romano {time.strftime('%X')}")
-        await asyncio.sleep(1)
+        # print(f">>daily {time.strftime('%X')}")
+        pyautogui.write(str('>>daily'))
+        pyautogui.press('enter')
+        sleep_time = random.randint(22,24)
+        logging.info(f"daily {sleep_time}")
+        await asyncio.sleep(3600*sleep_time)
+
+
+async def gib_cookie(): #58 minute cooldown 60 seconds to minute
+    while True: 
+        # current_time = int(time.strftime('%H'))
+        # if current_time > 9 and  current_time <23:
+        #     print(f">>gibcookie @romano {time.strftime('%X')}")   
+        pyautogui.write(str('>>gibcookie @Romano&Juliet#9642'))
+        pyautogui.press('enter')
+        sleep_time = random.randint(60, 75)
+        logging.info(f"cookie {sleep_time}")
+        await asyncio.sleep(60*sleep_time)
 
 async def main(): 
     print("starting")
+    log = "log.log"
+    logging.basicConfig(filename=log,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+    logging.info('begin logging')
     daily = asyncio.create_task(do_daily())
     cookie = asyncio.create_task(gib_cookie())
     await daily
@@ -27,4 +40,4 @@ asyncio.run(main())
 # 4) check shop 
 # 5) purchase from shop if requirements are met 
 # 	a) find and click the button required if we have enough kud
-# why
+# 6) log data in a sqlite database 
