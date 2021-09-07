@@ -32,6 +32,7 @@ async def main():
     daily = asyncio.create_task(do_daily())
     cookie = asyncio.create_task(gib_cookie())
     await daily
+    await asyncio.sleep(15)
     await cookie
 
 
