@@ -22,6 +22,7 @@ async def gib_cookie(): #58 minute cooldown 60 seconds to minute
         await asyncio.sleep(60*sleep_time)
 
 async def main(): 
+    await asyncio.sleep(10)
     print("starting")
     log = "log.log"
     logging.basicConfig(filename=log,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
