@@ -14,11 +14,11 @@ async def do_daily(): #22 hour cooldown 3600 seconds in 1 hour
 async def gib_cookie(): #58 minute cooldown 60 seconds to minute
     while True: 
         current_time = int(time.strftime('%H'))
+        sleep_time = random.randint(60, 75)
         if current_time > 9 and  current_time <23:
             #     print(f">>gibcookie @romano {time.strftime('%X')}")   
             pyautogui.write(str('>>gibcookie @Romano&Juliet#9642'))
             pyautogui.press('enter')
-            sleep_time = random.randint(60, 75)
             logging.info(f"cookie {sleep_time}")
         print(f"cookie sleep {sleep_time}minutes")
         await asyncio.sleep(60*sleep_time)
